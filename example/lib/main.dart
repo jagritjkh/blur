@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Container(height: 72, width: 144),
                   overlayChild: Center(
                     child: Text(
-                      'Jagrit',
+                      'Cat',
                       style: Theme.of(context).textTheme.headline3,
                     ),
                   ),

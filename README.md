@@ -32,10 +32,10 @@ Blur(
 ## Output
 ![blur_text](https://user-images.githubusercontent.com/32562337/95469491-570e4300-099d-11eb-87ec-5ca60e6176ba.jpg)
 
-# Normal Image
+## Normal Image
 ![normal_image](https://user-images.githubusercontent.com/32562337/95471905-09dfa080-09a0-11eb-8ce3-b90b3a063d80.jpg)
 
-# Input
+## Input
 ```
 ImageBlur.asset(
   'assets/cat.webp',
@@ -46,5 +46,5 @@ ImageBlur.asset(
 ),
 ```
 
-# Output
+## Output
 ![blur_image](https://user-images.githubusercontent.com/32562337/95471602-bd946080-099f-11eb-95db-39818cef1554.jpg)
