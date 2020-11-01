@@ -45,39 +45,60 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             ImageBlur.asset(
               'assets/cat.webp',
-              colorOpacity: 0,
-              scale: 4,
-              borderRadius: 20,
+              scale: 2.5,
               blur: blurValue,
+              blurColor: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
-            Stack(
-              alignment: Alignment.center,
+            ImageBlur.asset(
+              'assets/cat.webp',
+              colorOpacity: 0.2,
+              scale: 2.5,
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
+              blur: blurValue,
+              overlay: Text(
+                'Cat',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2
+                    .copyWith(color: Theme.of(context).scaffoldBackgroundColor),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset('assets/cat.webp', scale: 4),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/cat.webp',
+                      scale: 3.5,
+                    ),
+                    Frost(
+                      blur: blurValue,
+                      borderRadius: BorderRadius.circular(20),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Frost',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Blur(
                   blur: blurValue,
-                  borderRadius: 30,
-                  blurColor: Colors.white,
-                  child: Container(height: 72, width: 144),
-                  overlayChild: Center(
+                  blurColor: Theme.of(context).primaryColor,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Cat',
+                      'Blur',
                       style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                 ),
               ],
-            ),
-            Blur(
-              blur: blurValue,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Blur text',
-                  style: Theme.of(context).textTheme.headline3,
-                ),
-              ),
-              blurColor: Theme.of(context).primaryColor,
             ),
             Slider(
               value: blurValue,

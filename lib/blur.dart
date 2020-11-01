@@ -13,24 +13,26 @@ class Blur extends StatelessWidget {
   Blur({
     Key key,
     @required this.child,
-    this.blur = 2,
-    this.blurColor,
-    this.borderRadius = 0,
+    this.blur = 5,
+    this.blurColor = Colors.white,
+    this.borderRadius,
     this.colorOpacity = 0.5,
-    this.overlayChild,
+    this.overlay,
+    this.alignment = Alignment.center,
   }) : super(key: key);
 
   final Widget child;
   final double blur;
   final Color blurColor;
-  final double borderRadius;
+  final BorderRadius borderRadius;
   final double colorOpacity;
-  final Widget overlayChild;
+  final Widget overlay;
+  final AlignmentGeometry alignment;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: borderRadius ?? BorderRadius.zero,
       child: Stack(
         children: [
           child,
@@ -39,12 +41,10 @@ class Blur extends StatelessWidget {
               filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
               child: Container(
                 decoration: BoxDecoration(
-                  // borderRadius: BorderRadius.circular(borderRadius),
-                  color: blurColor == null
-                      ? Colors.transparent.withOpacity(colorOpacity)
-                      : blurColor.withOpacity(colorOpacity),
+                  color: blurColor.withOpacity(colorOpacity),
                 ),
-                child: overlayChild,
+                alignment: alignment,
+                child: overlay,
               ),
             ),
           ),
@@ -61,13 +61,21 @@ class ImageBlur extends StatelessWidget {
     String path, {
     Key key,
     BoxFit fit,
+    double height,
+    double width,
     double scale,
-    this.blur = 2,
-    this.blurColor,
-    this.borderRadius = 0,
+    this.blur = 5,
+    this.blurColor = Colors.white,
+    this.borderRadius,
     this.colorOpacity = 0.5,
-    this.overlayChild,
-  })  : image = Image.asset(path, fit: fit, scale: scale),
+    this.overlay,
+  })  : image = Image.asset(
+          path,
+          fit: fit,
+          height: height,
+          width: width,
+          scale: scale,
+        ),
         super(key: key);
 
   ///acts as Image.network
@@ -75,21 +83,29 @@ class ImageBlur extends StatelessWidget {
     String url, {
     Key key,
     BoxFit fit,
+    double height,
+    double width,
     double scale,
-    this.blur = 2,
-    this.blurColor = Colors.transparent,
-    this.borderRadius = 0,
+    this.blur = 5,
+    this.blurColor = Colors.white,
+    this.borderRadius,
     this.colorOpacity = 0.5,
-    this.overlayChild,
-  })  : image = Image.network(url, fit: fit, scale: scale),
+    this.overlay,
+  })  : image = Image.network(
+          url,
+          fit: fit,
+          height: height,
+          width: width,
+          scale: scale,
+        ),
         super(key: key);
 
   final Widget image;
   final double blur;
   final Color blurColor;
-  final double borderRadius;
+  final BorderRadius borderRadius;
   final double colorOpacity;
-  final Widget overlayChild;
+  final Widget overlay;
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +115,47 @@ class ImageBlur extends StatelessWidget {
       blurColor: blurColor,
       borderRadius: borderRadius,
       colorOpacity: colorOpacity,
-      overlayChild: overlayChild,
+      overlay: overlay,
+    );
+  }
+}
+
+class Frost extends StatelessWidget {
+  final Widget child;
+  final double blur;
+  final Color frostColor;
+  final double frostOpacity;
+  final double height;
+  final double width;
+  final AlignmentGeometry alignment;
+  final BorderRadius borderRadius;
+
+  const Frost({
+    Key key,
+    this.child,
+    this.blur = 5,
+    this.frostColor = Colors.white,
+    this.alignment = Alignment.center,
+    this.height,
+    this.width,
+    this.frostOpacity = 0.0,
+    this.borderRadius,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Blur(
+      blur: blur,
+      blurColor: frostColor,
+      borderRadius: borderRadius,
+      child: Container(
+        height: height,
+        width: width,
+        child: height == null || width == null ? child : SizedBox.shrink(),
+        color: frostColor.withOpacity(frostOpacity),
+      ),
+      alignment: alignment,
+      overlay: child,
     );
   }
 }

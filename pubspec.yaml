@@ -1,6 +1,7 @@
 name: blur
-description: To be able to blur widgets and images.
-version: 0.0.1
+description: Blur is a wrapper widget that blur it's child. There are ImageBlur.asset and ImageBlur.network that blur the image. Frost is another wrapper which blurs the background.
+
+version: 1.0.0
 author: Jagrit Kharbanda<jagritjkh@gmail.com>
 homepage: https://github.com/jagritjkh/blur
 
