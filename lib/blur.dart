@@ -1,14 +1,16 @@
 library blur;
 
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 ///blur it's child
-///blur is the value of blur effect, higher the blur more the blur effect (default value = 2)
+///blur is the value of blur effect, higher the blur more the blur effect (default value = 5)
 ///blurColor is the color of blur effect
-///borderRadius is the radius of the child to be blurred (default value = 0)
+///borderRadius is the radius of the child to be blurred
 ///colorOpacity is the opacity of the blurColor (default value = 0.5)
 ///overlayChild is the widget that can be stacked over blurred widget
+///alignment is the alignment geometry of the overlay
 class Blur extends StatelessWidget {
   Blur({
     Key key,
@@ -55,6 +57,9 @@ class Blur extends StatelessWidget {
 }
 
 ///blurs the image provided to it
+///height is the height of the image
+///width is the width of the image
+///scale scales the image
 class ImageBlur extends StatelessWidget {
   ///acts as Image.asset
   ImageBlur.asset(
@@ -120,17 +125,16 @@ class ImageBlur extends StatelessWidget {
   }
 }
 
+///created frosted glass effect: blurs the background of the child given to it
+///frostColor is the color of the frost effect
+///frostOpacity is the opacity of the frostColor
+///height is the height of the frost effect
+///width is the width of the frost effect
+///borderRadius is the radius of the frost effect
+///alignment is the alignment geometry of the child
+///padding is the child padding
 class Frost extends StatelessWidget {
-  final Widget child;
-  final double blur;
-  final Color frostColor;
-  final double frostOpacity;
-  final double height;
-  final double width;
-  final AlignmentGeometry alignment;
-  final BorderRadius borderRadius;
-
-  const Frost({
+  Frost({
     Key key,
     this.child,
     this.blur = 5,
@@ -140,7 +144,56 @@ class Frost extends StatelessWidget {
     this.width,
     this.frostOpacity = 0.0,
     this.borderRadius,
+    this.padding = EdgeInsets.zero,
   }) : super(key: key);
+
+  ///give the frosted glass effect to the string text
+  ///textAlign is the alignment of the string text
+  ///textStyle is the styling of the string text
+  Frost.text(
+    String text, {
+    Key key,
+    TextAlign textAlign,
+    TextStyle textStyle,
+    this.blur = 5,
+    this.frostColor = Colors.white,
+    this.alignment = Alignment.center,
+    this.height,
+    this.width,
+    this.frostOpacity = 0.0,
+    this.borderRadius,
+    this.padding = EdgeInsets.zero,
+  })  : child = Text(text, textAlign: textAlign, style: textStyle),
+        super(key: key);
+
+  ///give the frosted glass effect to the icon
+  ///iconColor is the color of the icon
+  ///iconSize is the size of the icon
+  Frost.icon(
+    IconData iconData, {
+    Color iconColor,
+    double iconSize,
+    Key key,
+    this.blur = 5,
+    this.frostColor = Colors.white,
+    this.alignment = Alignment.center,
+    this.height,
+    this.width,
+    this.frostOpacity = 0.0,
+    this.borderRadius,
+    this.padding = EdgeInsets.zero,
+  })  : child = Icon(iconData, color: iconColor, size: iconSize),
+        super(key: key);
+
+  final Widget child;
+  final double blur;
+  final Color frostColor;
+  final double frostOpacity;
+  final double height;
+  final double width;
+  final AlignmentGeometry alignment;
+  final BorderRadius borderRadius;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
@@ -151,11 +204,15 @@ class Frost extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
+        padding: padding ?? EdgeInsets.zero,
         child: height == null || width == null ? child : SizedBox.shrink(),
         color: frostColor.withOpacity(frostOpacity),
       ),
       alignment: alignment,
-      overlay: child,
+      overlay: Padding(
+        padding: padding,
+        child: child,
+      ),
     );
   }
 }
