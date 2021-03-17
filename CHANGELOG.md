@@ -1,10 +1,14 @@
-## [1.0.1] - 02-11-2020
+## [2.0.0] - 2021-03-17
+
+* migrate to null safety.
+
+## [1.0.1] - 2020-11-02
 
 * Add: `padding` property to `Frost` widget.
 * Add: `Frost.text` which takes string as input.
 * Add: `Frost.icon` which takes iconData as input.
 
-## [1.0.0] - 02-11-2020
+## [1.0.0] - 2020-11-02
 
 * Breaking: The `borderRadius` datatype has changed from `double` to `BorderRadius`.
 * Add: `height` and `width` properties to `ImageBlur.asset` and `ImageBlur.network`.

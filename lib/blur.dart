@@ -13,8 +13,8 @@ import 'package:flutter/material.dart';
 ///alignment is the alignment geometry of the overlay
 class Blur extends StatelessWidget {
   Blur({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.blur = 5,
     this.blurColor = Colors.white,
     this.borderRadius,
@@ -26,9 +26,9 @@ class Blur extends StatelessWidget {
   final Widget child;
   final double blur;
   final Color blurColor;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
   final double colorOpacity;
-  final Widget overlay;
+  final Widget? overlay;
   final AlignmentGeometry alignment;
 
   @override
@@ -64,11 +64,11 @@ class ImageBlur extends StatelessWidget {
   ///acts as Image.asset
   ImageBlur.asset(
     String path, {
-    Key key,
-    BoxFit fit,
-    double height,
-    double width,
-    double scale,
+    Key? key,
+    BoxFit? fit,
+    double? height,
+    double? width,
+    double? scale,
     this.blur = 5,
     this.blurColor = Colors.white,
     this.borderRadius,
@@ -86,11 +86,11 @@ class ImageBlur extends StatelessWidget {
   ///acts as Image.network
   ImageBlur.network(
     String url, {
-    Key key,
-    BoxFit fit,
-    double height,
-    double width,
-    double scale,
+    Key? key,
+    BoxFit? fit,
+    double? height,
+    double? width,
+    required double scale,
     this.blur = 5,
     this.blurColor = Colors.white,
     this.borderRadius,
@@ -108,9 +108,9 @@ class ImageBlur extends StatelessWidget {
   final Widget image;
   final double blur;
   final Color blurColor;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
   final double colorOpacity;
-  final Widget overlay;
+  final Widget? overlay;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +135,7 @@ class ImageBlur extends StatelessWidget {
 ///padding is the child padding
 class Frost extends StatelessWidget {
   Frost({
-    Key key,
+    Key? key,
     this.child,
     this.blur = 5,
     this.frostColor = Colors.white,
@@ -152,9 +152,9 @@ class Frost extends StatelessWidget {
   ///textStyle is the styling of the string text
   Frost.text(
     String text, {
-    Key key,
-    TextAlign textAlign,
-    TextStyle textStyle,
+    Key? key,
+    TextAlign? textAlign,
+    TextStyle? textStyle,
     this.blur = 5,
     this.frostColor = Colors.white,
     this.alignment = Alignment.center,
@@ -171,9 +171,9 @@ class Frost extends StatelessWidget {
   ///iconSize is the size of the icon
   Frost.icon(
     IconData iconData, {
-    Color iconColor,
-    double iconSize,
-    Key key,
+    Color? iconColor,
+    double? iconSize,
+    Key? key,
     this.blur = 5,
     this.frostColor = Colors.white,
     this.alignment = Alignment.center,
@@ -185,14 +185,14 @@ class Frost extends StatelessWidget {
   })  : child = Icon(iconData, color: iconColor, size: iconSize),
         super(key: key);
 
-  final Widget child;
+  final Widget? child;
   final double blur;
   final Color frostColor;
   final double frostOpacity;
-  final double height;
-  final double width;
+  final double? height;
+  final double? width;
   final AlignmentGeometry alignment;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
   final EdgeInsets padding;
 
   @override
@@ -204,7 +204,7 @@ class Frost extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        padding: padding ?? EdgeInsets.zero,
+        padding: padding,
         child: height == null || width == null ? child : SizedBox.shrink(),
         color: frostColor.withOpacity(frostOpacity),
       ),
