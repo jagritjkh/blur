@@ -60,7 +60,7 @@ Blur(
 ## Output
 ![blur_image](https://user-images.githubusercontent.com/32562337/97818490-b6275500-1cc8-11eb-8d8a-e68eeec64f92.jpg)
 
-##Frost
+## Frost
 ```
 Stack(
   alignment: Alignment.center,
