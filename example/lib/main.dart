@@ -72,6 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
+            AnimatedBlur(
+              durationInMilliseconds: 1000,
+              blurColor: Colors.red,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Hello',
+                  style: theme.textTheme.headline3,
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

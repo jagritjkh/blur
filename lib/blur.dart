@@ -74,6 +74,7 @@ class ImageBlur extends StatelessWidget {
     this.borderRadius,
     this.colorOpacity = 0.5,
     this.overlay,
+    this.alignment = Alignment.center,
   })  : image = Image.asset(
           path,
           fit: fit,
@@ -96,6 +97,7 @@ class ImageBlur extends StatelessWidget {
     this.borderRadius,
     this.colorOpacity = 0.5,
     this.overlay,
+    this.alignment = Alignment.center,
   })  : image = Image.network(
           url,
           fit: fit,
@@ -111,6 +113,7 @@ class ImageBlur extends StatelessWidget {
   final BorderRadius? borderRadius;
   final double colorOpacity;
   final Widget? overlay;
+  final AlignmentGeometry alignment;
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +124,7 @@ class ImageBlur extends StatelessWidget {
       borderRadius: borderRadius,
       colorOpacity: colorOpacity,
       overlay: overlay,
+      alignment: alignment,
     );
   }
 }
@@ -213,6 +217,87 @@ class Frost extends StatelessWidget {
         padding: padding,
         child: child,
       ),
+    );
+  }
+}
+
+class AnimatedBlur extends StatefulWidget {
+  final Widget child;
+  final int durationInMilliseconds;
+  final Curve curve;
+  final double blur;
+  final Color blurColor;
+  final BorderRadius? borderRadius;
+  final double colorOpacity;
+  final Widget? overlay;
+  final AlignmentGeometry alignment;
+
+  AnimatedBlur({
+    required this.child,
+    Key? key,
+    this.durationInMilliseconds = 400,
+    this.curve = Curves.decelerate,
+    this.blur = 5,
+    this.blurColor = Colors.white,
+    this.borderRadius,
+    this.colorOpacity = 0.5,
+    this.overlay,
+    this.alignment = Alignment.center,
+  }) : super(key: key);
+
+  @override
+  _AnimatedBlurState createState() => _AnimatedBlurState();
+}
+
+class _AnimatedBlurState extends State<AnimatedBlur>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late CurvedAnimation animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: Duration(milliseconds: widget.durationInMilliseconds),
+      vsync: this,
+    )..addListener(() {
+        setState(() {});
+      });
+    animation = CurvedAnimation(parent: controller, curve: widget.curve);
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Blur(
+      child: widget.child,
+      blur: animation.value,
+      blurColor: widget.blurColor,
+      alignment: widget.alignment,
+      borderRadius: widget.borderRadius,
+      colorOpacity: widget.colorOpacity,
+      overlay: widget.overlay,
+    );
+  }
+}
+
+extension BlurExtension on Widget {
+  Blur blurred({
+    double blur = 5,
+    Color blurColor = Colors.white,
+    BorderRadius? borderRadius,
+    double colorOpacity = 0.5,
+    Widget? overlay,
+    AlignmentGeometry alignment = Alignment.center,
+  }) {
+    return Blur(
+      child: this,
+      blur: blur,
+      blurColor: blurColor,
+      borderRadius: borderRadius,
+      colorOpacity: colorOpacity,
+      overlay: overlay,
+      alignment: alignment,
     );
   }
 }
