@@ -12,7 +12,7 @@ To use this package, add `blur` as a [dependency in your pubspec.yaml file](http
 ## Add dependency
 ```
 dependencies:
-  blur: ^2.0.0
+  blur: ^3.0.0
 ```
 
 ## Import
@@ -41,20 +41,19 @@ Blur(
 ## Normal Image
 ![normal_image](https://user-images.githubusercontent.com/32562337/97818479-aad42980-1cc8-11eb-8f89-28bc8ac3fd14.jpg)
 
+# Using extensions
+
 ## Input
 ```
- ImageBlur.asset(
-  'assets/cat.webp',
-  scale: 2.5,
-  borderRadius: BorderRadius.circular(20),
-  overlay: Text(
-    'Cat',
-    style: Theme.of(context)
-        .textTheme
-        .headline2
-        .copyWith(color: Theme.of(context).scaffoldBackgroundColor),
-  ),
-),
+ Image.asset('assets/cat.png').blurred(
+     colorOpacity: 0.2,
+     borderRadius: BorderRadius.horizontal(right: Radius.circular(20)),
+     blur: blurValue,
+     overlay: Text(
+       'Cat',
+       style: theme.textTheme.headline2!.copyWith(color: theme.scaffoldBackgroundColor),
+     ),
+   ),
 ```
 
 ## Output
@@ -66,19 +65,17 @@ Stack(
   alignment: Alignment.center,
   children: [
     Image.asset(
-      'assets/cat.webp',
+      'assets/cat.png',
       scale: 3.5,
     ),
-    Frost(
-      borderRadius: BorderRadius.circular(20),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          'Frost',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-      ),
-    ),
+    Text(
+      'Frost',
+      style: theme.textTheme.headline4,
+    ).frosted(
+       blur: blurValue,
+       borderRadius: BorderRadius.circular(20),
+       padding: EdgeInsets.all(8),
+     ),
   ],
 ),
 ```

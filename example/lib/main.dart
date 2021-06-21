@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -47,8 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: [
                 Expanded(
-                  child: ImageBlur.asset(
-                    'assets/cat.webp',
+                  child: Image.asset('assets/cat.png').blurred(
                     blur: blurValue,
                     blurColor: theme.primaryColor,
                     borderRadius:
@@ -57,31 +56,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 SizedBox(width: 20.0),
                 Expanded(
-                  child: ImageBlur.asset(
-                    'assets/cat.webp',
+                  child: Image.asset('assets/cat.png').blurred(
                     colorOpacity: 0.2,
                     borderRadius:
                         BorderRadius.horizontal(right: Radius.circular(20)),
                     blur: blurValue,
                     overlay: Text(
                       'Cat',
-                      style: theme.textTheme.headline2
+                      style: theme.textTheme.headline2!
                           .copyWith(color: theme.scaffoldBackgroundColor),
                     ),
                   ),
                 ),
               ],
-            ),
-            AnimatedBlur(
-              durationInMilliseconds: 1000,
-              blurColor: Colors.red,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Hello',
-                  style: theme.textTheme.headline3,
-                ),
-              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -90,25 +77,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   alignment: Alignment.center,
                   children: [
                     Image.asset(
-                      'assets/cat.webp',
+                      'assets/cat.png',
                       scale: 3.5,
                     ),
-                    Frost(
+                    Column(
+                      children: [
+                        Icon(Icons.image),
+                        Text(
+                          'Frost',
+                          style: theme.textTheme.headline4,
+                        ),
+                      ],
+                    ).frosted(
                       blur: blurValue,
                       borderRadius: BorderRadius.circular(20),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Icon(Icons.image),
-                            Text(
-                              'Frost',
-                              style: theme.textTheme.headline4,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                      padding: EdgeInsets.all(8),
+                    )
                   ],
                 ),
                 Blur(
@@ -128,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
               alignment: Alignment.center,
               children: [
                 Image.asset(
-                  'assets/cat.webp',
+                  'assets/cat.png',
                   width: MediaQuery.of(context).size.width - 40,
                   height: 200,
                   fit: BoxFit.fill,
@@ -136,15 +120,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Frost.text(
+                    Text(
                       'Frost text',
+                      style: theme.textTheme.headline3,
+                    ).frosted(
                       blur: blurValue,
-                      textStyle: theme.textTheme.headline3,
                       padding: EdgeInsets.all(8),
                     ),
                     SizedBox(width: 20),
-                    Frost.icon(
-                      Icons.image,
+                    Icon(Icons.image).frosted(
                       padding: EdgeInsets.all(8),
                       blur: blurValue,
                     ),
