@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:blur/blur.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,13 +17,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Blur Wrapper widget'),
+      home: const MyHomePage(title: 'Blur Wrapper widget'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -40,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -51,15 +53,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     blur: blurValue,
                     blurColor: theme.primaryColor,
                     borderRadius:
-                        BorderRadius.horizontal(left: Radius.circular(20)),
+                        const BorderRadius.horizontal(left: Radius.circular(20)),
                   ),
                 ),
-                SizedBox(width: 20.0),
+                const SizedBox(width: 20.0),
                 Expanded(
                   child: Image.asset('assets/cat.png').blurred(
                     colorOpacity: 0.2,
                     borderRadius:
-                        BorderRadius.horizontal(right: Radius.circular(20)),
+                        const BorderRadius.horizontal(right: Radius.circular(20)),
                     blur: blurValue,
                     overlay: Text(
                       'Cat',
@@ -82,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Column(
                       children: [
-                        Icon(Icons.image),
+                        const Icon(Icons.image),
                         Text(
                           'Frost',
                           style: theme.textTheme.headline4,
@@ -91,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ).frosted(
                       blur: blurValue,
                       borderRadius: BorderRadius.circular(20),
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                     )
                   ],
                 ),
@@ -99,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   blur: blurValue,
                   blurColor: theme.primaryColor,
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Blur',
                       style: theme.textTheme.headline3,
@@ -125,11 +127,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: theme.textTheme.headline3,
                     ).frosted(
                       blur: blurValue,
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                     ),
-                    SizedBox(width: 20),
-                    Icon(Icons.image).frosted(
-                      padding: EdgeInsets.all(8),
+                    const SizedBox(width: 20),
+                    const Icon(Icons.image).frosted(
+                      padding: const EdgeInsets.all(8),
                       blur: blurValue,
                     ),
                   ],

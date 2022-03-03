@@ -1,3 +1,10 @@
+## [3.1.0] - 2021-03-04
+* Change: example app name
+* Update: environment sdk and flutter
+* Migrate: to android v2 embedding
+* Add: flutter lints and analysis options
+* Update: LICENSE
+
 ## [3.0.0] - 2021-06-21
 
 # Breaking changes:-

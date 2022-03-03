@@ -1,7 +1,6 @@
 library blur;
 
 import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 ///blur it's [child]
@@ -12,7 +11,7 @@ import 'package:flutter/material.dart';
 ///[overlay] is the widget that can be stacked over blurred widget
 ///[alignment] is the alignment geometry of the overlay (default value = Alignment.center)
 class Blur extends StatelessWidget {
-  Blur({
+  const Blur({
     Key? key,
     required this.child,
     this.blur = 5,
@@ -110,7 +109,7 @@ extension FrostExtension on Widget {
         height: height,
         width: width,
         padding: padding,
-        child: height == null || width == null ? this : SizedBox.shrink(),
+        child: height == null || width == null ? this : const SizedBox.shrink(),
         color: frostColor.withOpacity(frostOpacity),
       ),
       alignment: alignment,
