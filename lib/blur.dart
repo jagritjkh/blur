@@ -1,10 +1,13 @@
 library blur;
 
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 ///blur it's [child]
 ///[blur] is the value of blur effect, higher the blur more the blur effect (default value = 5)
+///[sigmaX] is the value of sigmaX used in ImageFilter.blur, if provided it will override the blur value (default value = null)
+///[sigmaY] is the value of sigmaY used in ImageFilter.blur, if provided it will override the blur value (default value = null)
 ///[blurColor] is the color of blur effect (default value = Colors.white)
 ///[borderRadius] is the radius of the child to be blurred
 ///[colorOpacity] is the opacity of the blurColor (default value = 0.5)
@@ -20,6 +23,8 @@ class Blur extends StatelessWidget {
     this.colorOpacity = 0.5,
     this.overlay,
     this.alignment = Alignment.center,
+    this.sigmaX,
+    this.sigmaY,
   }) : super(key: key);
 
   final Widget child;
@@ -29,6 +34,8 @@ class Blur extends StatelessWidget {
   final double colorOpacity;
   final Widget? overlay;
   final AlignmentGeometry alignment;
+  final double? sigmaX;
+  final double? sigmaY;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +46,10 @@ class Blur extends StatelessWidget {
           child,
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
+              filter: ImageFilter.blur(
+                sigmaX: sigmaX ?? blur,
+                sigmaY: sigmaY ?? blur,
+              ),
               child: Container(
                 decoration: BoxDecoration(
                   color: blurColor.withOpacity(colorOpacity),
