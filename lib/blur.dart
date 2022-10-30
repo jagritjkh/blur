@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 ///[colorOpacity] is the opacity of the blurColor (default value = 0.5)
 ///[overlay] is the widget that can be stacked over blurred widget
 ///[alignment] is the alignment geometry of the overlay (default value = Alignment.center)
+///[ignorePointer] is the ignore click blur and overlay when you can't click child widgets (default value = false)
 class Blur extends StatelessWidget {
   const Blur({
     Key? key,
@@ -20,6 +21,7 @@ class Blur extends StatelessWidget {
     this.colorOpacity = 0.5,
     this.overlay,
     this.alignment = Alignment.center,
+    this.ignorePointer = false,
   }) : super(key: key);
 
   final Widget child;
@@ -29,7 +31,8 @@ class Blur extends StatelessWidget {
   final double colorOpacity;
   final Widget? overlay;
   final AlignmentGeometry alignment;
-
+  final bool ignorePointer;
+  
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -38,14 +41,17 @@ class Blur extends StatelessWidget {
         children: [
           child,
           Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: blurColor.withOpacity(colorOpacity),
+            child: IgnorePointer(
+              ignoring: ignorePointer,
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: blurColor.withOpacity(colorOpacity),
+                  ),
+                  alignment: alignment,
+                  child: overlay,
                 ),
-                alignment: alignment,
-                child: overlay,
               ),
             ),
           ),
