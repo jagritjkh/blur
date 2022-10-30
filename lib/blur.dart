@@ -40,9 +40,9 @@ class Blur extends StatelessWidget {
       child: Stack(
         children: [
           child,
-          IgnorePointer(
-            ignoring: ignorePointer,
-            child: Positioned.fill(
+          Positioned.fill(
+            child: IgnorePointer(
+              ignoring: ignorePointer,
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
                 child: Container(
