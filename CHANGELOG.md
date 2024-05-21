@@ -1,3 +1,10 @@
+## [4.0.0] - 2024-05-22
+* Add: support for latest flutter version `3.22.0`
+* Update: environment sdk and flutter
+* Update: flutter lints
+* Update: example
+* Update: LICENSE
+
 ## [3.1.0] - 2021-03-04
 * Change: example app name
 * Update: environment sdk and flutter

@@ -12,7 +12,7 @@ To use this package, add `blur` as a [dependency in your pubspec.yaml file](http
 ## Add dependency
 ```
 dependencies:
-  blur: ^3.0.0
+  blur: ^4.0.0
 ```
 
 ## Import

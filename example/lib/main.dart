@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:blur/blur.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,12 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -52,21 +52,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Image.asset('assets/cat.png').blurred(
                     blur: blurValue,
                     blurColor: theme.primaryColor,
-                    borderRadius:
-                        const BorderRadius.horizontal(left: Radius.circular(20)),
+                    borderRadius: const BorderRadius.horizontal(left: Radius.circular(20)),
                   ),
                 ),
                 const SizedBox(width: 20.0),
                 Expanded(
                   child: Image.asset('assets/cat.png').blurred(
                     colorOpacity: 0.2,
-                    borderRadius:
-                        const BorderRadius.horizontal(right: Radius.circular(20)),
+                    borderRadius: const BorderRadius.horizontal(
+                      right: Radius.circular(20),
+                    ),
                     blur: blurValue,
                     overlay: Text(
                       'Cat',
-                      style: theme.textTheme.headline2!
-                          .copyWith(color: theme.scaffoldBackgroundColor),
+                      style: theme.textTheme.displayMedium?.copyWith(
+                        color: theme.scaffoldBackgroundColor,
+                      ),
                     ),
                   ),
                 ),
@@ -87,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         const Icon(Icons.image),
                         Text(
                           'Frost',
-                          style: theme.textTheme.headline4,
+                          style: theme.textTheme.headlineMedium,
                         ),
                       ],
                     ).frosted(
@@ -104,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       'Blur',
-                      style: theme.textTheme.headline3,
+                      style: theme.textTheme.displaySmall,
                     ),
                   ),
                 ),
@@ -124,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     Text(
                       'Frost text',
-                      style: theme.textTheme.headline3,
+                      style: theme.textTheme.displaySmall,
                     ).frosted(
                       blur: blurValue,
                       padding: const EdgeInsets.all(8),

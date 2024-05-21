@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 ///[alignment] is the alignment geometry of the overlay (default value = Alignment.center)
 class Blur extends StatelessWidget {
   const Blur({
-    Key? key,
+    super.key,
     required this.child,
     this.blur = 5,
     this.blurColor = Colors.white,
@@ -20,7 +20,7 @@ class Blur extends StatelessWidget {
     this.colorOpacity = 0.5,
     this.overlay,
     this.alignment = Alignment.center,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final double blur;
