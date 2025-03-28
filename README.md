@@ -1,6 +1,6 @@
 # blur
 
-Blur is a wrapper widget that blur it's child. There are ImageBlur.asset and ImageBlur.network that blur the image. Frost is another wrapper which blurs the background.
+Blur is a wrapper widget that blurs its child. `ImageBlur.asset` and `ImageBlur.network` blur images. Frost is another wrapper which blurs the background.
 
 
 ## Getting Started
