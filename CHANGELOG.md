@@ -1,8 +1,11 @@
+## [4.0.2] - 2025-04-07
+* Fix: changelog indentation
+
 ## [4.0.1] - 2025-04-07
 * Add: support for latest flutter version `3.29.2`
 * Change: opacity to withValues for color to avoid linter warnings
 
-* [4.0.0] - 2024-05-22
+## [4.0.0] - 2024-05-22
 * Add: support for latest flutter version `3.22.0`
 * Update: environment sdk and flutter
 * Update: flutter lints
