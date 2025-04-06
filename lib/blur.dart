@@ -1,6 +1,7 @@
 library blur;
 
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 ///blur it's [child]
@@ -42,7 +43,7 @@ class Blur extends StatelessWidget {
               filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
               child: Container(
                 decoration: BoxDecoration(
-                  color: blurColor.withOpacity(colorOpacity),
+                  color: blurColor.withValues(alpha: colorOpacity),
                 ),
                 alignment: alignment,
                 child: overlay,
@@ -69,13 +70,13 @@ extension BlurExtension on Widget {
     AlignmentGeometry alignment = Alignment.center,
   }) {
     return Blur(
-      child: this,
       blur: blur,
       blurColor: blurColor,
       borderRadius: borderRadius,
       colorOpacity: colorOpacity,
       overlay: overlay,
       alignment: alignment,
+      child: this,
     );
   }
 }
@@ -105,17 +106,17 @@ extension FrostExtension on Widget {
       blur: blur,
       blurColor: frostColor,
       borderRadius: borderRadius,
-      child: Container(
-        height: height,
-        width: width,
-        padding: padding,
-        child: height == null || width == null ? this : const SizedBox.shrink(),
-        color: frostColor.withOpacity(frostOpacity),
-      ),
       alignment: alignment,
       overlay: Padding(
         padding: padding,
         child: this,
+      ),
+      child: Container(
+        height: height,
+        width: width,
+        padding: padding,
+        color: frostColor.withValues(alpha: frostOpacity),
+        child: height == null || width == null ? this : const SizedBox.shrink(),
       ),
     );
   }

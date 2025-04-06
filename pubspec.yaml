@@ -1,11 +1,11 @@
 name: blur
 description: Blur is a wrapper widget that blur it's child. There are ImageBlur.asset and ImageBlur.network that blur the image. Frost is another wrapper which blurs the background.
 
-version: 4.0.0
+version: 4.0.1
 homepage: https://github.com/jagritjkh/blur
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: ^3.5.4
   flutter: ">=3.10.0"
 
 dependencies:
